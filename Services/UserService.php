@@ -1,29 +1,20 @@
 <?php
 
+require 'Repositories/UserRepository.php';
+
 class UserService{
 
 	protected $pdo;
+	protected $userRepository;
 
 	public function __construct($pdo){
 		$this->pdo = $pdo;
+		$this->userRepository = new UserRepository($pdo);
 
 	}
 
-
-	public function getUser(){
-		$query = "Select * from Users";
-
-		try{
-			$statement = $this->pdo->prepare($query);
-			$statement->execute();
-			$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-			$json = json_encode($result);
-
-			echo $json;
-
-
-		} catch(Exception $ex){
-			die($ex->getMessage());
-		}
+	public function getUsersRepo(){
+		return $this->userRepository->getUsers();
 	}
+
 }

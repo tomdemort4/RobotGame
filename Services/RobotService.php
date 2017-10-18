@@ -1,6 +1,5 @@
 <?php
 
-//header("Access-Control-Allow-Origin");
 
 require 'Repositories/RobotRepository.php';
 
