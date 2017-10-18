@@ -1,38 +1,29 @@
 <?php
 
-header('Access-Control-Allow-Origin: *');
+require 'Database/Connection.php';
+require 'Models/Robot.php';
 
 class RobotRepository{
+	protected $connection;
 
-	protected $pdo;
-
-	public function __construct($pdo){
-		$this->pdo = $pdo;
-
+	function __construct() {
+		$this->connection = Connection::getConnection();
 	}
 
 	public function getRobots(){
-		$query = "Select * from Robots";
+		return [
+			new Robot(1, "Robot@1"),
+			new Robot(2, "Robot@2"),
+		];
+		// $query = "Select * from Robots";
 
-		try{
-			$statement = $this->pdo->prepare($query);
-			$statement->execute();
-			$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-			$json = json_encode($result);
-
-			echo $json;
-
-		} catch (Exception $ex){
-			die($ex->getMessage());
-
-		}
+		// try{
+		// 	$statement = $this->connection->prepare($query);
+		// 	$statement->execute();
+		// 	$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+		// 	return $result;
+		// } catch (Exception $ex){
+		// 	die($ex->getMessage());
+		// }
 	}
-
-	public function saySomething(){
-		echo "Saying something";
-	}
-
-
-
 }

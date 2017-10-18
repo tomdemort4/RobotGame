@@ -1,27 +1,25 @@
 <?php
 
-
 require 'Repositories/RobotRepository.php';
 
 class RobotService{
 
-	protected $pdo;
 	protected $robotRepository;
 
-	public function __construct($pdo){
-		$this->pdo = $pdo;
-		$this->robotRepository = new RobotRepository($pdo);
+	public function __construct(){
+		$this->robotRepository = new RobotRepository();
 	}
 
-
-	public function checkRepoFunctionCall(){
-
-		return $this->robotRepository->saySomething();
-
-		
-	}
-
-	public function getRobotsRepo(){
+	public function getRobots(){
 		return $this->robotRepository->getRobots();
 	}
+
+	public function getRobotById($id) {
+		return new Robot($id, "Robot");
+	}
+
+	public function Create($robot) {
+		return false;
+	}
+
 }
