@@ -8,4 +8,5 @@ $pdo = Connection::getConnection($config['database']);
 $robotService = new RobotService($pdo);
 
 
-$robotService->checkNotEmpty();
+//$robotService->checkRepoFunctionCall();
+$robotService->getRobotsRepo();

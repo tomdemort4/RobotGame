@@ -15,12 +15,14 @@ class RobotService{
 	}
 
 
-	public function checkNotEmpty(){
+	public function checkRepoFunctionCall(){
 
-		if($this->robotRepository->GetRobots()){
-			echo "correcto";
-		}
+		return $this->robotRepository->saySomething();
+
 		
-		
+	}
+
+	public function getRobotsRepo(){
+		return $this->robotRepository->getRobots();
 	}
 }

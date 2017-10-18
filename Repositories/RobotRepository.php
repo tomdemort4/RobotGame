@@ -29,5 +29,10 @@ class RobotRepository{
 		}
 	}
 
+	public function saySomething(){
+		echo "Saying something";
+	}
+
+
 
 }
