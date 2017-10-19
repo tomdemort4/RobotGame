@@ -6,6 +6,4 @@ require 'Services/UserService.php';
 
 $pdo = Connection::getConnection($config['database']);
 $userService = new UserService($pdo);
-
-
-$userService->getUsersRepo();
+$userService->getUsers();

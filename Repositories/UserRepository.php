@@ -7,7 +7,6 @@ class UserRepository{
 		$this->pdo = $pdo;
 	}
 
-
 	public function getUsers(){
 		$query = "Select * from users";
 	
@@ -15,11 +14,7 @@ class UserRepository{
 			$statement = $this->pdo->prepare($query);
 			$statement->execute();
 			$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-			$json = json_encode($result);
-
-			echo $json;
-
-
+			return $result;
 		} catch(Exception $ex){
 			die($ex->getMessage());
 		}

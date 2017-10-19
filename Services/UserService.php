@@ -13,7 +13,7 @@ class UserService{
 
 	}
 
-	public function getUsersRepo(){
+	public function getUsers(){
 		return $this->userRepository->getUsers();
 	}
 
