@@ -15,7 +15,7 @@ class RobotService{
 	}
 
 	public function getRobotById($id) {
-		return new Robot($id, "Robot");
+		return $this->robotRepository->getRobotById($id);
 	}
 
 	public function Create($robot) {

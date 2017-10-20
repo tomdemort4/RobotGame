@@ -11,19 +11,30 @@ class RobotRepository{
 	}
 
 	public function getRobots(){
-		return [
-			new Robot(1, "Robot@1"),
-			new Robot(2, "Robot@2"),
-		];
-		// $query = "Select * from Robots";
+		$query = "Select * from Robots";
 
-		// try{
-		// 	$statement = $this->connection->prepare($query);
-		// 	$statement->execute();
-		// 	$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-		// 	return $result;
-		// } catch (Exception $ex){
-		// 	die($ex->getMessage());
-		// }
+		try{
+			$statement = $this->connection->prepare($query);
+			$statement->execute();
+			$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+			return $result;
+		} catch (Exception $ex){
+			die($ex->getMessage());
+		}
+		
+	}
+
+	public function getRobotById($id){
+		$query = "Select * from Robots where id=?";
+
+		try{
+			$statement = $this->connection->prepare($query);
+			$statement->execute(array($id));
+			$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+			return $result;
+
+		}catch(Exception $ex){
+			die($ex->getMessage());
+		}
 	}
 }
