@@ -18,8 +18,11 @@ class RobotService{
 		return $this->robotRepository->getRobotById($id);
 	}
 
-	public function Create($robot) {
-		return false;
+	public function createRobot($table,$params){
+		if(!empty($params)){
+			return $this->robotRepository->createRobot($table,$params);		
+		}else{
+			return false;
+		}
 	}
-
 }
