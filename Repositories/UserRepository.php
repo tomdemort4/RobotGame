@@ -1,18 +1,21 @@
 <?php
 
-class UserRepository{
-	protected $pdo;
+require 'Database/Connection.php';
+require 'Models/User.php';
 
-	public function __construct($pdo){
-		$this->pdo = $pdo;
+class UserRepository{
+	protected $connection;
+
+	public function __construct(){
+		$this->connection = Connection::getConnection();
 	}
 
-	public function getUsers(){
-		$query = "Select * from users";
+	public function getUser($email,$pass){
+		$query = "Select * from users where Email=? and Password=?";
 	
 		try{
-			$statement = $this->pdo->prepare($query);
-			$statement->execute();
+			$statement = $this->connection->prepare($query);
+			$statement->execute(array($email,$pass));
 			$result = $statement->fetchAll(PDO::FETCH_ASSOC);
 			return $result;
 		} catch(Exception $ex){
