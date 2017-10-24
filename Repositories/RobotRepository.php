@@ -37,4 +37,24 @@ class RobotRepository{
 			die($ex->getMessage());
 		}
 	}
+
+	public function createRobot($table,$parameters){
+        
+       $query = sprintf(
+               'insert into %s (%s) values(%s)',
+               $table ,
+               implode(',',  array_keys($parameters)),
+               ':' . implode(', :',  array_keys($parameters))        
+        );
+       
+        var_dump($query);
+        try{
+           $statement = $this->connection->prepare($query);
+           
+            $statement->execute($parameters);
+            
+       } catch (Exception $ex) {
+           die($ex->getMessage());
+       }       
+    }
 }
