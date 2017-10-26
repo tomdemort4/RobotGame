@@ -18,10 +18,13 @@ class RobotService{
 		return $this->robotRepository->getRobotById($id);
 	}
 
-	public function createRobot($table,$params){
-		if(!empty($params)){
-			return $this->robotRepository->createRobot($table,$params);		
+	public function createRobot($name,$life,$attack,$defense,$color,$image,$price){
+
+		if(!empty($name) && !empty($life) && !empty($attack) && !empty($defense) && !empty($color)
+			 && !empty($image) && !empty($price)){
+			return $this->robotRepository->createRobot($name,$life,$attack,$defense,$color,$image,$price);		
 		}else{
+			echo "something went wrong";
 			return false;
 		}
 	}

@@ -24,17 +24,17 @@ if($_SERVER['REQUEST_METHOD'] == "GET") {
 if($_SERVER['REQUEST_METHOD'] == "POST"){
 	$postdata = file_get_contents("php://input");
 	$request = json_decode($postdata);
+	$name = $request->name;
+	$life = $request->life;
+	$attack = $request->attack;
+	$defense = $request->defense;
+	$color = $request->color;
+	$image = $request->image;
+	$price = $request->price;
 
-	$params = [
-		'Name' => $request->name,
-		'Life' => $request->life,
-		'Attack' => $request->attack,
-		'Defense' => $request->defense,
-		'BattleColor' => $request->color,
-		'Image' => $request->image
-	];
 
-	$robotService->createRobot('robots',$params);
+	$result = $robotService->createRobot($name,$life,$attack,$defense,$color,$image,$price);
+	echo json_encode($result);
 }
 
 
