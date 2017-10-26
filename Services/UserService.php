@@ -13,7 +13,7 @@ class UserService{
 
 	public function getUser($email,$pass){
 		if(!empty($email) && !empty($pass)){
-			return $this->userRepository->getUsers($email,$pass);
+			return $this->userRepository->getUser($email,$pass);
 		}else{
 			return false;
 		}

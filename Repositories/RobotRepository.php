@@ -38,20 +38,14 @@ class RobotRepository{
 		}
 	}
 
-	public function createRobot($table,$parameters){
+	 public function createRobot($name,$life,$attack,$defense,$color,$image,$price){
         
-       $query = sprintf(
-               'insert into %s (%s) values(%s)',
-               $table ,
-               implode(',',  array_keys($parameters)),
-               ':' . implode(', :',  array_keys($parameters))        
-        );
+       $query = "insert into Robots (Name,Life,Attack,Defense,BattleColor,Image,Price)" .
+       			"values(?,?,?,?,?,?,?)";
        
-        var_dump($query);
         try{
            $statement = $this->connection->prepare($query);
-           
-            $statement->execute($parameters);
+            $statement->execute(array($name,$life,$attack,$defense,$color,$image,$price));
             
        } catch (Exception $ex) {
            die($ex->getMessage());
